@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Home() {
   const [formData, setFormData] = useState({ name: '', age: '' });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -11,9 +14,17 @@ function Home() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form Submitted:', formData);
+    try {
+      const response = await axios.post('https://maargway-backend.onrender.com/createStudent', formData);
+      console.log('User Created:', response.data.newStudent);
+      const name = response.data.newStudent.name;
+      navigate(`/${name}`, { state: { formData: response.data.newStudent } });
+    } catch (error) {
+      console.error('Error creating user:', error);
+      alert('Failed to create user. Please try again.');
+    }
   };
 
   return (
