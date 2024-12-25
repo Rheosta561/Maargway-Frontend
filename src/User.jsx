@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 function User() {
   const { name } = useParams();  // Correctly getting 'name' from the URL
   const [user, setUser] = useState('');
+  const [userid, setUserid] = useState('');
   const [student, setStudent] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -19,7 +20,35 @@ function User() {
   const interests = ['Music', 'Art', 'Technology', 'Sports', 'Photography'];
   const strengths = ['Leadership', 'Problem Solving', 'Creativity', 'Communication', 'Teamwork'];
   const weaknesses = ['Procrastination', 'Perfectionism', 'Impatience', 'Lack of Focus'];
-  const preferences = ['Remote Work', 'Flexible Hours', 'High Salary', 'Growth Opportunities'];
+  const preferences = [
+    'React',
+    'Artificial Intelligence',
+    'Music Production',
+    'BlockChain',
+    'Digital Marketing',
+    'Ethical Hacking',
+    'Data Analytics',
+    'Web Development',
+    'Machine Learning',
+    'Cyber Security',
+    'UI/UX Design',
+    'Augmented Reality',
+    'Game Development',
+    'Python Programming',
+    'Big Data',
+    'Cloud Computing',
+    'Internet of Things (IoT)',
+    'DevOps',
+    'Full Stack Development',
+    'Deep Learning',
+    'Mobile App Development',
+    'Graphic Design',
+    'Photography',
+    'Animation',
+    'Cryptocurrency',
+    'Business Analytics',
+  ];
+  
 
   // Fetch student data
   useEffect(() => {
@@ -29,6 +58,8 @@ function User() {
         const studentData = response.data;
         setStudent(studentData);
         setUser(studentData.name);
+        const id=studentData._id;
+        setUserid(id);
 
         console.log(studentData.name); 
 
@@ -44,7 +75,7 @@ function User() {
     };
 
     fetchStudentData();
-  }, [name]);  // Use 'name' as dependency, not 'id'
+  }, [name]);  
 
   // Save user data
   const saveData = async () => {
@@ -55,14 +86,21 @@ function User() {
         weaknesses: selectedWeaknesses.filter(weakness => weakness.trim() !== "").join(','),
         preferences: selectedPreferences.filter(preference => preference.trim() !== "").join(','),
       });
-      navigate(`/MaargWay/Recommendations/${name}`);  // Use 'name' here as well
+      navigate(`/MaargWay/Recommendations/${userid}`);  
       console.log("Updated data:", response.data);
     } catch (error) {
       console.error("Error saving data:", error);
     }
   };
 
-  if (loading) return <div className="text-white text-center">Loading...</div>;
+  if (loading)  return (
+    <div className="flex items-center justify-center h-screen bg-zinc-950">
+      <div className="flex items-center space-x-2">
+        <div className="w-6 h-6 border-4 border-t-4 border-emerald-900 border-solid rounded-full animate-spin"></div>
+        <div className="text-white text-xl">Loading...</div>
+      </div>
+    </div>
+  );
 
   return (
     <div className="bg-zinc-950 h-fit w-screen text-white">

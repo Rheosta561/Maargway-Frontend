@@ -4,6 +4,7 @@ import axios from 'axios';
 
 function Home() {
   const [formData, setFormData] = useState({ name: '', age: '' });
+  const [loading, setLoading] = useState(false); // Loading state
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -16,14 +17,31 @@ function Home() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.name || !formData.age || isNaN(formData.age)) {
+      alert('Please enter a valid name and age.');
+      return;
+    }
+
+    setLoading(true);
+    
     try {
       const response = await axios.post('https://maargway-backend.onrender.com/createStudent', formData);
-      console.log('User Created:', response.data.newStudent);
-      const name = response.data.newStudent.name;
-      navigate(`/${name}`, { state: { formData: response.data.newStudent } });
+      const student = response.data.newStudent || response.data.student; // Get the correct student object
+      
+      console.log('Student:', student);
+
+      
+      if (response.data.student) {
+        navigate(`/${student.name}`, { state: { formData: student } });
+      } else {
+        navigate(`/${student.name}`, { state: { formData: student } });
+      }
+
     } catch (error) {
       console.error('Error creating user:', error);
       alert('Failed to create user. Please try again.');
+    } finally {
+      setLoading(false); 
     }
   };
 
@@ -72,7 +90,7 @@ function Home() {
           </div>
           <div className="w-full">
             <input
-              type="text"
+              type="number"
               name="age"
               value={formData.age}
               onChange={handleChange}
@@ -93,8 +111,9 @@ function Home() {
           <button
             type="submit"
             className="bg-emerald-950 text-white px-6 py-3 rounded-lg hover:bg-emerald-600 transition"
+            disabled={loading} // Disable the button while loading
           >
-            Submit
+            {loading ? 'Submitting...' : 'Submit'}
           </button>
         </form>
       </div>
