@@ -1,7 +1,7 @@
 {
     "builds": [
       {
-        "src": "src/app.jsx",
+        "src": "index.html",
         "use": "@vercel/static-build"
       }
     ],
