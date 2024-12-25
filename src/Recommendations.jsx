@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import RecCard from './RecCard';
 import { useParams } from 'react-router-dom';
+import GenAi from './GenAi';
 
 function Recommendations({ userId }) {
   const [workshops, setWorkshops] = useState([]);
@@ -9,7 +10,7 @@ function Recommendations({ userId }) {
   const [error, setError] = useState(null);
   const {userid}= useParams();
 
-  // Fetch workshops when the component mounts
+  // Fetch workshops when the component reloads
   useEffect(() => {
     const fetchWorkshops = async () => {
       try {
@@ -60,6 +61,11 @@ function Recommendations({ userId }) {
           <RecCard key={index} workshop={workshop} userId={userid} />
         ))}
       </div>
+
+      <div className='mt-4 text-4xl'>Suggested Mental Health Exercise
+        <p className='text-sm  text-emerald-400'>Generated through AI</p>
+      </div>
+      <GenAi userid={userid}/>
     </div>
   );
 }
