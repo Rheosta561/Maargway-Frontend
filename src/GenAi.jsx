@@ -7,7 +7,7 @@ function GenAi({userid}) {
     useEffect(()=>{
         const fetchdata =  async()=>{
             try {
-                const response = await axios.get(`https://maargway-backend.onrender.com/${userid}`);
+                const response = await axios.get(`https://maargway-backend.onrender.com/AiRecommendation/${userid}`);
                 setdata(response.data);
                 setLoading(false);
 
