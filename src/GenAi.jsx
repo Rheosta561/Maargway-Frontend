@@ -26,7 +26,7 @@ function GenAi({userid}) {
         
 
   return (
-    <div className='w-full border border-dashed border-zinc-500 h-fit flex p-2 gap-3'>
+    <div className='w-full border border-dashed border-zinc-500 h-fit flex flex-col md:flex-row p-2 gap-3'>
     <div className='w-52 h-52 md:w-64 md:h-64 bg-purple-900 flex-shrink-0 '>
     {loading ? (
                     <div className="h-full w-full bg-gray-200 animate-pulse">
