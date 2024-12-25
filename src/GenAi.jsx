@@ -42,8 +42,9 @@ function GenAi({userid}) {
     <div className='flex flex-col text-3xl md:text-4xl overflow-hidden'>
         
     {loading ? (
-                    <div className="animate-pulse">
-                        <div className="h-6 bg-gray-200 mb-2"></div>
+                    <div className="animate-pulse text-sm">
+                        Loading
+                        <div className="h-6 w-full bg-gray-200 mb-2"></div>
                         <div className="h-4 bg-gray-200 mb-2"></div>
                     </div>
                 ) : (
