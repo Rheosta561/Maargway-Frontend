@@ -120,6 +120,12 @@ function Home() {
       <div className="text-white text-center mt-12 opacity-65">
         Developed By Anubhav Mishra
       </div>
+      <div class="text-sm text-emerald-800 mt-1 text-center  ">
+        <a href="https://maargway-backend.onrender.com/">Server Site | Click Here</a>
+            
+            
+            
+        </div>
     </div>
   );
 }
