@@ -19,12 +19,13 @@ function RecCard({ workshop, userId }) {
     }
   };
   const setPositiveResponse = async()=>{
+    setLiked(!liked);
     try {
         const response = await axios.put( `https://maargway-backend.onrender.com/${workshop._id}/response/positive`);
         setLoading(true);
         if(response){
             // alert(`liked ${workshop.name}`);
-            setLiked(!liked);
+            
             setDisliked(false);
             setLoading(false);
         }
@@ -36,10 +37,11 @@ function RecCard({ workshop, userId }) {
 
   }
   const setNegativeResponse = async()=>{
+    setDisliked(!disliked);
     try {
         const response = await axios.put( `https://maargway-backend.onrender.com/${workshop._id}/response/negative`);
         if(response){
-            setDisliked(!disliked);
+            
             setLiked(false);
         }
     } catch (error) {
