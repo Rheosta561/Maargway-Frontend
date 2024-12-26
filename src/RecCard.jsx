@@ -62,14 +62,14 @@ function RecCard({ workshop, userId }) {
         <div className='relative flex justify-between p-4'>
   <div>
   <button onClick={setPositiveResponse} className={` transition-all ${liked ? 'bg-zinc-50  p-2 rounded-full ' :''}`}>
-  <FaThumbsUp className={`text-blue-500 hover:scale-150 transition-all ${liked ? 'text-blue-900 ' :''} ${loading ? 'animate-ping' : ''} `}  /> 
+  <FaThumbsUp className={`text-blue-500 hover:scale-105 transition-all ${liked ? 'text-blue-900 ' :''} ${loading ? 'animate-ping' : ''} `}  /> 
 
     </button>
     
   </div>
   <div>
     <button onClick={setNegativeResponse} className={` transition-all ${disliked ? 'bg-zinc-50  p-2 rounded-full ' :''}`}>
-    <FaThumbsDown className={`text-red-500 hover:scale-150 transition-all ${disliked ? 'text-red-700 ' : ''} ${loading ? 'animate-ping' : ''}`} /> 
+    <FaThumbsDown className={`text-red-500 hover:scale-105 transition-all ${disliked ? 'text-red-700 ' : ''} ${loading ? 'animate-ping' : ''}`} /> 
 
     </button>
     
